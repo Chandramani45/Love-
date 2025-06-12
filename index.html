@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>For Alisha 💖</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ffdde1, #ee9ca7);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #ff3366;
+        }
+        p {
+            font-size: 1.2em;
+            color: #333;
+        }
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .image-grid img {
+            max-width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(45deg);
+            animation: float 10s linear infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+        }
+        .countdown {
+            font-size: 1.5em;
+            color: #222;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts"></div>
+    <div class="container">
+        <h1>Alisha (Puchu 🥰)</h1>
+        <p>Mani & Alisha – Together since <strong>01 March 2025</strong></p>
+        <p>Her smile, her childishness, her beauty – she's everything ❤️</p>
+        <p><em>Tum mere ho, mere hi rehna... 💞</em></p>
+        <div class="countdown" id="countdown"></div>
+        <div class="image-grid">
+            <img src="photo1.jpg" alt="us1">
+            <img src="photo2.jpg" alt="her">
+        </div>
+        <audio autoplay loop>
+            <source src="song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    <script>
+        // Create floating hearts
+        const hearts = document.querySelector('.hearts');
+        for (let i = 0; i < 30; i++) {
+            let heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+            hearts.appendChild(heart);
+        }
+
+        // Countdown to next anniversary
+        function updateCountdown() {
+            const now = new Date();
+            let nextAnniv = new Date(`March 1, ${now.getFullYear() + 1}`);
+            if (now.getMonth() < 2 || (now.getMonth() === 2 && now.getDate() < 1)) {
+                nextAnniv = new Date(`March 1, ${now.getFullYear()}`);
+            }
+            const diff = nextAnniv - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const countdown = document.getElementById('countdown');
+            countdown.textContent = `💖 ${days} days until next anniversary 💖`;
+        }
+        updateCountdown();
+    </script>
+</body>
+</html>
